@@ -1,31 +1,30 @@
 class School
 
-attr_writer :grade
-attr_reader :sort
+  def initialize(school_name)
+    @school_name = school_name
+    @roster = {}
+  end
 
-  NEW = {}
-
-  def initialize
-    @add_student = add_student
-    NEW << add_student
-    NEW["name"] = []
-    NEW["name"] << "grade"
+  def roster
+    @roster
   end
 
   def add_student(name, grade)
-
+    @student_name = name
+    @grade = grade
+    if @roster.include?(grade) == false
+      @roster[grade] = []
+    end
+    @roster[grade] << name
   end
 
-
-
-#A method, grade, should take in an argument of a grade and return all of the students in that grade:
-  def grade
-
+  def grade(number)
+    @roster[number]
   end
 
-#You should be able to get a sorted list alphabetically.
   def sort
-    NEW.sort
+    @roster.each do |grade, name|
+      @roster[grade] = name.sort
+    end
   end
-
 end
